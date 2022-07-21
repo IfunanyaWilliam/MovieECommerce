@@ -11,9 +11,12 @@ namespace MovieECommerce.Controllers
         {
             _producerRepo = producerRepo;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var producers = await _producerRepo.GetProducersAsync();
+            return View(producers);
         }
+
+
     }
 }
