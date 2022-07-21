@@ -5,20 +5,18 @@ using MovieECommerce.Models;
 
 namespace MovieECommerce.Repositories
 {
-    public class ActorRepository : IActorRepository
+    public class ProducerRepository : IProducerRepository
     {
         private readonly AppDbContext _context;
 
-        public ActorRepository(AppDbContext context)
+        public ProducerRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Actor>> GetActorsAsync()
+        public async Task<IEnumerable<Producer>> GetProducersAsync()
         {
-            return await _context.Actors.ToListAsync();
+            return await _context.Producers.ToListAsync();
         }
-
-
     }
 }

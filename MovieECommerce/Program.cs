@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using MovieECommerce.Contract;
 using MovieECommerce.Data;
+using MovieECommerce.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Add the DbContext to the builder
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IActorRepository, ActorRepository>();
+builder.Services.AddScoped<IProducerRepository, ProducerRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

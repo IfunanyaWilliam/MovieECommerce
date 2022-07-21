@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieECommerce.Contract;
 
 namespace MovieECommerce.Controllers
 {
     public class ActorController : Controller
     {
-        public IActionResult Index()
+        private readonly IActorRepository _actorRepo;
+
+        public ActorController(IActorRepository actorRepo)
         {
-            return View();
+            _actorRepo = actorRepo;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var data = await _actorRepo.GetActorsAsync();
+            return View(data);
         }
     }
 }
