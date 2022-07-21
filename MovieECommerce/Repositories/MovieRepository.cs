@@ -5,18 +5,19 @@ using MovieECommerce.Models;
 
 namespace MovieECommerce.Repositories
 {
-    public class CinemaRepository : ICinemaRepository
+    public class MovieRepository : IMovieRepository
     {
         private readonly AppDbContext _context;
 
-        public CinemaRepository(AppDbContext context)
+        public MovieRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Cinema>> GetCinemas()
+
+        public async Task<IEnumerable<Movie>> GetMovies()
         {
-            return await _context.Cinemas.ToListAsync();
+            return await _context.Movies.ToListAsync();
         }
 
     }
