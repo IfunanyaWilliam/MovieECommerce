@@ -17,7 +17,7 @@ namespace MovieECommerce.Repositories
 
         public async Task<IEnumerable<Movie>> GetMovies()
         {
-            return await _context.Movies.ToListAsync();
+            return await _context.Movies.Include(mv => mv.MovieActors).ToListAsync();
         }
 
     }

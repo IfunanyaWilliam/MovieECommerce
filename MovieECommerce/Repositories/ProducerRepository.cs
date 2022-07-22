@@ -16,7 +16,7 @@ namespace MovieECommerce.Repositories
 
         public async Task<IEnumerable<Producer>> GetProducersAsync()
         {
-            return await _context.Producers.ToListAsync();
+            return await _context.Producers.Include(m => m.Movies).ToListAsync();
         }
     }
 }

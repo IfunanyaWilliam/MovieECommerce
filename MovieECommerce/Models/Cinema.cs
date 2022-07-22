@@ -4,19 +4,20 @@ namespace MovieECommerce.Models
 {
     public class Cinema
     {
-        public Cinema()
-        {
-            CinemaId = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
-        }
-
         [Key]
-        public string CinemaId { get; private set; }
-        public string Logo { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string CinemaId { get; private set; } = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
 
+        [Display(Name = "Cinema Logo")]
+        public string? Logo { get; set; }
+
+        [Display(Name = "Name")]
+        public string? Name { get; set; }
+
+        [Display(Name = "Description")]
+        public string? Description { get; set; }
+         
         //relationship
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
     }
 }
  

@@ -4,17 +4,19 @@ namespace MovieECommerce.Models
 {
     public class Actor
     {
-        public Actor()
-        {
-            ActorId = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
-        }
-        public string ActorId { get; private set; } 
+        [Key]
+        public string ActorId { get; private set; } = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
 
-        public string ProfilePictureURL { get; set; }
-        public string FullNname { get; set; }
-        public string BioInformation { get; set; }
+        [Display(Name = "Profile Picture")]
+        public string? ProfilePictureURL { get; set; }
+
+        [Display(Name = "Full Name")]
+        public string? FullNname { get; set; }
+
+        [Display(Name = "Biography")]
+        public string? BioInformation { get; set; }
 
         //Relationship
-        public List<Movie_Actor> MovieActors { get; set; }
+        public List<Movie_Actor>? MovieActors { get; set; }
     }
 }

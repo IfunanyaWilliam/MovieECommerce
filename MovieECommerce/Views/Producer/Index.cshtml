@@ -1,14 +1,14 @@
-﻿@model IEnumerable<MovieECommerce.Models.Actor>
+﻿@model IEnumerable<Producer>
 
 @{
-    ViewData["Title"] = "List of Actors";
+    ViewData["Title"] = "List of Producers";
 }
 
 <div class="row">
     <div class="col-md-8 offset-md-2">
-        <table class="table">
+        <table class="table text-center">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
                     <th>@Html.DisplayNameFor(model => model.FullNname)</th>
                     <th>@Html.DisplayNameFor(model => model.BioInformation)</th>
