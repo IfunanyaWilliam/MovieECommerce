@@ -16,5 +16,11 @@ namespace MovieECommerce.Controllers
             var movies = await _movieRepo.GetMovies();
             return View(movies);
         }
+
+        [HttpPost]
+        public IActionResult Search()
+        {
+            return View();
+        }
     }
 }
