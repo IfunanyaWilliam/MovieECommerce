@@ -17,5 +17,10 @@ namespace MovieECommerce.Controllers
             var data = await _actorRepo.GetActorsAsync();
             return View(data);
         }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
     }
 }
