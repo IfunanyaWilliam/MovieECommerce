@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieECommerce.Contract;
+using MovieECommerce.Models;
+using MovieECommerce.ViewModels;
 
 namespace MovieECommerce.Controllers
 {
@@ -21,6 +23,19 @@ namespace MovieECommerce.Controllers
         public async Task<IActionResult> Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ActorViewModel model)
+        {
+            var actor = new Actor();
+            if (ModelState.IsValid)
+            {
+                
+                var result = await _actorRepo.AddActor(actor);
+            }
+            return View(model);
         }
     }
 }
