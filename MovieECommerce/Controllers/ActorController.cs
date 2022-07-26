@@ -32,7 +32,6 @@ namespace MovieECommerce.Controllers
             var actor = new Actor();
             if (ModelState.IsValid)
             {
-                
                 var result = await _actorRepo.AddActor(actor);
             }
             return View(model);
