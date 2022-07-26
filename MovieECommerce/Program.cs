@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieECommerce.Contract;
 using MovieECommerce.Data;
 using MovieECommerce.Repositories;
+using MovieECommerce.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddScoped<IActorRepository, ActorRepository>();
 builder.Services.AddScoped<IProducerRepository, ProducerRepository>();
 builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IImageService, ImageService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
