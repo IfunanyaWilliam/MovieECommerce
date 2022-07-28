@@ -1,24 +1,27 @@
-﻿@model MovieECommerce.ViewModels.ActorViewModel
+﻿@model MovieECommerce.ViewModels.ActorEditViewModel
 
 
 @{
-    ViewData["Title"] = "Add a New Actor";
+    ViewData["Title"] = "Update Actor Information";
 }
 
 <div class="row justify-content-center align-items-center">
     <h3 >@ViewData["Title"]</h3>
+</div>
 
+<div style="align-content:center" class="text-center">
+    <h6 class="alert-danger">@TempData["Error"] </h6>
 </div>
 
 <section>
     <div class="container">
-        <form enctype="multipart/form-data" method="post" class="row d-flex justify-content-center align-items-center h-100"
-              asp-controller="Actor" asp-action="Create">
+        <form enctype="multipart/form-data" method="post" asp-controller="Actor" asp-action="Edit" class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-9">
 
                 @*Display an error message if image could not be added*@
                 <span class="text-danger my-2">@TempData["Error"]</span>
                 <span asp-validation-summary="ModelOnly"></span>
+                <input hidden asp-for="@Model.ActorId" value="@Model.ActorId" />
 
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body">
@@ -31,7 +34,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input asp-for="FullNname" type="text" class="form-control form-control-lg" placeholder="Enter Name of Actor" />
+                                <input asp-for="FullNname" type="text" class="form-control form-control-lg" value="@Model.FullNname" />
                                 <span asp-validation-for="FullNname" class="text-danger"></span>
 
                             </div>
@@ -47,7 +50,7 @@
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <textarea asp-for="BioInformation" type="email" class="form-control form-control-lg" placeholder="Enter the Biography of Actor"></textarea>
+                                <textarea asp-for="@Model.BioInformation" type="email" class="form-control form-control-lg" value="@Model.BioInformation"></textarea>
                                 <span asp-validation-for="BioInformation" class="text-danger"></span>
 
 
@@ -56,24 +59,25 @@
 
 
                         <hr class="mx-n3">
-                        <div class="custom-file row align-items-center w-100">
-                            <div class="col-md-3 ps-5">
-
-                                <label asp-for="ProfilePictureURL" class="mb-0"></label>
-
+                        <div class="d-flex flex-row justify-content-center custom-file py-3 w-100">
+                            <div>
+                                <label asp-for="@Model.ProfilePictureURL" class="mb-0 custom-file-label"></label>
+                                <input hidden asp-for="@Model.ProfilePictureURL" value="@Model.ProfilePictureURL" />
+                                <img src=@Model.ProfilePictureURL class="custom-file-input" width="100" height="100"/> 
+                                <span asp-validation-for="@Model.ProfilePictureURL"></span>
                             </div>
-                            <div class="col-md-9 pe-5 justify-content-center">
+                            <div class="col-md-9 pe-5 py-3 d-flex flex-row justify-content-center">
 
-                                <input asp-for="ProfilePictureURL" type="file" class="custom-file-input" />
-                                <span asp-validation-for="ProfilePictureURL"></span>
+                                <input asp-for="NewProfilePictureURL" type="file" class="custom-file-input" />
+                                <span asp-validation-for="NewProfilePictureURL"></span>
 
                             </div>
                         </div>
 
 
-                        <div class="d-flex flex-row justify-content-center">
+                        <div class="d-flex flex-row row justify-content-center">
                             <div class="px-5 py-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Add Actor</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Update Actor</button>
                                  <a class="btn btn-outline-primary ms-4 btn-lg" asp-controller="Actor" asp-action="Index"> List of Actors </a>
                             </div>
 
@@ -86,3 +90,4 @@
         </form>
     </div>
 </section>
+

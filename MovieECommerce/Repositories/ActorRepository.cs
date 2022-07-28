@@ -15,12 +15,12 @@ namespace MovieECommerce.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Actor>> GetActorsAsync()
+        public async Task<IEnumerable<Actor>> GetAllActorsAsync()
         {
             return await _context.Actors.ToListAsync();
         }
 
-        public async Task<Actor> GetActor(Expression<Func<Actor, bool>> predicate)
+        public async Task<Actor> GetActorAsync(Expression<Func<Actor, bool>> predicate)
         {
             return await _context.Actors.AsQueryable().FirstOrDefaultAsync(predicate);
         }

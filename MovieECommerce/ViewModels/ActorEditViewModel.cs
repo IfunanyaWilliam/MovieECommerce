@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MovieECommerce.ViewModels
 {
-    public class ActorViewModel
+    public class ActorEditViewModel
     {
         public string? ActorId { get; set; }
 
         [Display(Name = "Profile Picture")]
-        [Required(ErrorMessage = "Please upload an image of the Actor")]
-        public IFormFile? ProfilePictureURL { get; set; }
-
+        public string? ProfilePictureURL { get; set; }
+        public IFormFile? NewProfilePictureURL { get; set; }
 
         [Required(ErrorMessage = "Please enter the full name of the Actor")]
         [Display(Name = "Full Name")]

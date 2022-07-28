@@ -5,9 +5,9 @@ namespace MovieECommerce.Contract
 {
     public interface IActorRepository
     {
-        Task<IEnumerable<Actor>> GetActorsAsync();
+        Task<IEnumerable<Actor>> GetAllActorsAsync();
 
-        Task<Actor> GetActor(Expression<Func<Actor, bool>> predicate);
+        Task<Actor> GetActorAsync(Expression<Func<Actor, bool>> predicate);
 
         Task<bool> AddActor(Actor actor);
 

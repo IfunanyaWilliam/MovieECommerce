@@ -23,7 +23,7 @@ namespace MovieECommerce.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _actorRepo.GetActorsAsync();
+            var data = await _actorRepo.GetAllActorsAsync();
             return View(data);
         }
 
@@ -66,6 +66,72 @@ namespace MovieECommerce.Controllers
             }
             TempData["Error"] = "Actor could not be added";
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string actorId)
+        {
+            var actor = await _actorRepo.GetActorAsync(a => a.ActorId == actorId);
+            if(actor == null)
+            {
+                TempData["ActorNotFound"] = "Actor could not be found.";
+                return RedirectToAction("Index");
+            }
+
+            //Map the Actor to ActorEditViewModel since the Edit view takes ActorEditViewModel
+            var editActor = _mapper.Map<ActorEditViewModel>(actor);
+            return View(editActor);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ActorEditViewModel model)
+        {
+            var actorToModify = await _actorRepo.GetActorAsync(a => a.ActorId == model.ActorId);
+            if (actorToModify == null)
+            {
+                TempData["Error"] = "Could not update Actor";
+                return View(model);
+            }
+
+            if(model.NewProfilePictureURL != null && model.NewProfilePictureURL.Length > 0)
+            {
+                var filePath = Path.GetTempFileName();
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    await model.NewProfilePictureURL.CopyToAsync(stream);
+                }
+                var imageUplaodURL = await _imageService.UploadImage(filePath);
+
+                if(imageUplaodURL == null)
+                {
+                    TempData["Error"] = "Could not update Actor";
+                    return View(model);
+                }
+
+                //Assign NewProfilePictureURL to profilePictureURL of original actor
+                actorToModify.ProfilePictureURL = imageUplaodURL;
+            }
+
+            actorToModify.FullNname      = model.FullNname;
+            actorToModify.BioInformation = model.BioInformation;
+
+            var result = await _actorRepo.UpdateActor(actorToModify);
+            if (result)
+            {
+                TempData["Success"] = "Actor Successfully Modified";
+                return RedirectToAction("Detail", new { actorId = actorToModify.ActorId });
+            }
+            return View();
+        }
+
+
+        public async Task<IActionResult> Detail(string actorId)
+        {
+            var actor = await _actorRepo.GetActorAsync(a => a.ActorId == actorId);
+
+            return View();
         }
     }
 }

@@ -8,8 +8,12 @@
     <h6 class="alert-success">@TempData["ActorAddedSuccessfully"] </h6>
 </div>
 
+<div style="align-content:center" class="text-center">
+    <h6 class="alert-danger">@TempData["ActorNotFound"] </h6>
+</div>
+
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-1">
         <table class="table">
             <thead>
                 <tr>
@@ -25,18 +29,18 @@
                 {
                     <tr>
                         <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullNname" style="max-width: 150px;">
+                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullNname" style="max-width: 120px;">
                         </td>
                         <td class="align-middle">
-                            @Html.DisplayNameFor(modelItem => item.FullNname)
+                            @Html.DisplayFor(modelItem => item.FullNname)
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem => @item.BioInformation)
                         </td>
                         <td>
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Edit </a> |
-                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i> Details </a> |
-                            <a class="btn btn-danger text-white" href="#"> <i class="bi bi-trash"></i> Delete</a>
+                            <a asp-controller="Actor" asp-action="Edit" asp-route-actorId="@item.ActorId" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Edit </a> |
+                            <a asp-controller="Actor" asp-action="Detail" asp-route-actorId="@item.ActorId"  class="btn btn-outline-info"><i class="bi bi-eye"></i> Details </a> |
+                            <a asp-controller="Actor" asp-action="Delete" asp-route-actorId="@item.ActorId" class="btn btn-danger text-white"> <i class="bi bi-trash"></i> Delete</a>
                         </td>
                     </tr>
                 }

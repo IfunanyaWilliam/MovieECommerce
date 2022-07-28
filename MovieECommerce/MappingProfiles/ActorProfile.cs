@@ -9,6 +9,8 @@ namespace MovieECommerce.MappingProfiles
         {
             CreateMap<ActorViewModel, Actor>();
             CreateMap<Actor, ActorViewModel>();
+            CreateMap<Actor, ActorEditViewModel>();
+            CreateMap<ActorEditViewModel, Actor>();
         }
     }
 }
