@@ -12,8 +12,8 @@ using MovieECommerce.Data;
 namespace MovieECommerce.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220602092753_Initial")]
-    partial class Initial
+    [Migration("20220728123359_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,15 +30,12 @@ namespace MovieECommerce.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BioInformation")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullNname")
-                        .IsRequired()
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictureURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ActorId");
@@ -52,15 +49,12 @@ namespace MovieECommerce.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CinemaId");
@@ -80,22 +74,18 @@ namespace MovieECommerce.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CinemaId1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -127,19 +117,7 @@ namespace MovieECommerce.Migrations
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ActorId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MovieId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("MovieId");
-
-                    b.HasIndex("ActorId1");
-
-                    b.HasIndex("MovieId1");
+                    b.HasKey("MovieId", "ActorId");
 
                     b.ToTable("Movie_Actors");
                 });
@@ -150,15 +128,12 @@ namespace MovieECommerce.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BioInformation")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullNname")
-                        .IsRequired()
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictureURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProducerId");
@@ -170,9 +145,7 @@ namespace MovieECommerce.Migrations
                 {
                     b.HasOne("MovieECommerce.Models.Cinema", "Cinema")
                         .WithMany("Movies")
-                        .HasForeignKey("CinemaId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CinemaId1");
 
                     b.HasOne("MovieECommerce.Models.Producer", "Producer")
                         .WithMany("Movies")
@@ -187,13 +160,13 @@ namespace MovieECommerce.Migrations
                 {
                     b.HasOne("MovieECommerce.Models.Actor", "Actor")
                         .WithMany("MovieActors")
-                        .HasForeignKey("ActorId1")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MovieECommerce.Models.Movie", "Movie")
                         .WithMany("MovieActors")
-                        .HasForeignKey("MovieId1")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

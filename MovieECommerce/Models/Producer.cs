@@ -1,17 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieECommerce.Models
 {
     public class Producer
     {
         [Key]
-        public string ProducerId { get; private set; } = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string ProducerId { get; private set; }
 
         [Display(Name = "Profile Picture")]
         public string? ProfilePictureURL { get; set; }
 
         [Display(Name = "Full Name")]
-        public string? FullNname { get; set; }
+        public string? FullName { get; set; }
 
         [Display(Name = "Biography")]
         public string? BioInformation { get; set; }

@@ -36,11 +36,12 @@ namespace MovieECommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ActorViewModel model)
         {
-            var actor = _mapper.Map<Actor>(model); ;
             if (!ModelState.IsValid)
             {
                return View(model);
             }
+
+            var actor = _mapper.Map<Actor>(model);
 
             //Add Actor photo to Cloudinary and generate absolute path
             string imgUrl = "";
@@ -58,7 +59,7 @@ namespace MovieECommerce.Controllers
             }
 
             actor.ProfilePictureURL = imgUrl;
-            var result = await _actorRepo.AddActor(actor);
+            var result = await _actorRepo.AddActorAsync(actor);
             if (result)
             {
                 TempData["ActorAddedSuccessfully"] = "Actor successfully added.";
@@ -97,7 +98,7 @@ namespace MovieECommerce.Controllers
             if(model.NewProfilePictureURL != null && model.NewProfilePictureURL.Length > 0)
             {
                 var filePath = Path.GetTempFileName();
-
+                 
                 using (var stream = System.IO.File.Create(filePath))
                 {
                     await model.NewProfilePictureURL.CopyToAsync(stream);
@@ -114,10 +115,10 @@ namespace MovieECommerce.Controllers
                 actorToModify.ProfilePictureURL = imageUplaodURL;
             }
 
-            actorToModify.FullNname      = model.FullNname;
+            actorToModify.FullName      = model.FullName;
             actorToModify.BioInformation = model.BioInformation;
 
-            var result = await _actorRepo.UpdateActor(actorToModify);
+            var result = await _actorRepo.UpdateActorAsync(actorToModify);
             if (result)
             {
                 TempData["Success"] = "Actor Successfully Modified";
@@ -130,8 +131,8 @@ namespace MovieECommerce.Controllers
         public async Task<IActionResult> Detail(string actorId)
         {
             var actor = await _actorRepo.GetActorAsync(a => a.ActorId == actorId);
-
-            return View();
+            var actorDetail = _mapper.Map<ActorEditViewModel>(actor);
+            return View(actorDetail);
         }
     }
 }

@@ -25,13 +25,13 @@ namespace MovieECommerce.Repositories
             return await _context.Actors.AsQueryable().FirstOrDefaultAsync(predicate);
         }
 
-        public async Task<bool> AddActor(Actor actor)
+        public async Task<bool> AddActorAsync(Actor actor)
         {
             await _context.Actors.AddAsync(actor);
             return await _context.SaveChangesAsync() > 0;
         }
         
-        public async Task<bool> UpdateActor(Actor actor)
+        public async Task<bool> UpdateActorAsync(Actor actor)
         {
             var newActor = _context.Actors.Find(actor.ActorId);
             if(newActor is not null)
@@ -42,7 +42,7 @@ namespace MovieECommerce.Repositories
             return false;
         }
 
-        public async Task<bool> DeleteActor(string actorId)
+        public async Task<bool> DeleteActorAsync(string actorId)
         {
             var actor = await _context.Actors.FirstOrDefaultAsync(x => x.ActorId == actorId);
             if(actor is not null)

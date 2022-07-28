@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieECommerce.Models
 {
     public class Cinema
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string CinemaId { get; private set; } = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
 
         [Display(Name = "Cinema Logo")]

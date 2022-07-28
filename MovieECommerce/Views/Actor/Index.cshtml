@@ -13,12 +13,12 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-9 offset-md-1">
         <table class="table">
             <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
-                    <th>@Html.DisplayNameFor(model => model.FullNname)</th>
+                    <th>@Html.DisplayNameFor(model => model.FullName)</th>
                     <th>@Html.DisplayNameFor(model => model.BioInformation)</th>
                     <th>Actions</th>
                 </tr>
@@ -29,15 +29,15 @@
                 {
                     <tr>
                         <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullNname" style="max-width: 120px;">
+                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullName" style="max-width: 120px;">
                         </td>
                         <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.FullNname)
+                            @Html.DisplayFor(modelItem => item.FullName)
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem => @item.BioInformation)
                         </td>
-                        <td>
+                        <td class="align-middle">
                             <a asp-controller="Actor" asp-action="Edit" asp-route-actorId="@item.ActorId" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Edit </a> |
                             <a asp-controller="Actor" asp-action="Detail" asp-route-actorId="@item.ActorId"  class="btn btn-outline-info"><i class="bi bi-eye"></i> Details </a> |
                             <a asp-controller="Actor" asp-action="Delete" asp-route-actorId="@item.ActorId" class="btn btn-danger text-white"> <i class="bi bi-trash"></i> Delete</a>

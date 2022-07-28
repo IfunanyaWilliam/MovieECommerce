@@ -20,19 +20,21 @@
                 <span class="text-danger my-2">@TempData["Error"]</span>
                 <span asp-validation-summary="ModelOnly"></span>
 
+                <input hidden asp-for="ActorId"  />
+
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body">
 
                         <div class="row align-items-center pt-4 pb-3">
                             <div class="col-md-3 ps-5">
 
-                                <label asp-for="FullNname" class="mb-0"></label>
+                                <label asp-for="FullName" class="mb-0"></label>
 
                             </div>
                             <div class="col-md-9 pe-5">
 
-                                <input asp-for="FullNname" type="text" class="form-control form-control-lg" placeholder="Enter Name of Actor" />
-                                <span asp-validation-for="FullNname" class="text-danger"></span>
+                                <input asp-for="FullName" type="text" class="form-control form-control-lg" placeholder="Enter Name of Actor" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
 
                             </div>
                         </div>

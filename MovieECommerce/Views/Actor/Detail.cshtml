@@ -1,3 +1,42 @@
-﻿@model MovieECommerce.ViewModels.ActorViewModel
+﻿@model MovieECommerce.ViewModels.ActorEditViewModel
 
-<p>Welcome to Detals page</p>
+<div style="align-content:center" class="text-center">
+     <h6 class="alert-success">@TempData["Success"]</h6>
+</div>
+
+<div class="container">
+    <h1>Product Details</h1>
+    <span class="alert-info">@TempData["Image"]</span>
+    <div class="container d-flex border p-4 w-100">
+        <div class="w-25 d-flex flex-column justify-content-center align-items-center">
+            <img asp-for="@Model.ProfilePictureURL" src=@Model.ProfilePictureURL class="img-fluid rounded" />
+        </div>
+        <div class="container ml-3">
+            <label asp-for="@Model.FullName"></label>
+            <h5 asp-for="@Model.FullName">@Model.FullName</h5>
+
+            <div>
+                
+                <div class="d-flex mt-2  justify-content-start align-items-baseline">
+                    <form enctype="multipart/form-data" method="post">
+                        <div class="custom-file w-100 d-flex flex-column">
+                            <label asp-for="@Model.BioInformation"></label>
+                            <div class="border-0 m-1">@Model.BioInformation</div>
+                        </div>
+                        
+                        <div class="w-100 d-flex flex-row">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("View All Actors", "Index", "Actor", null, new { @class = "btn btn-primary"} ) 
+                                    </td>
+                                </tr>  
+                            </table>
+                        </div>
+
+                    </form>
+                </div>
+            </div>     
+        </div>
+    </div>
+</div>

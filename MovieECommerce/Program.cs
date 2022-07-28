@@ -24,6 +24,9 @@ builder.Services.AddScoped<IImageService, ImageService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Add service for Razorpages
+builder.Services.AddRazorPages(); 
+
 //add automapper
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

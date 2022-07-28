@@ -9,10 +9,10 @@ namespace MovieECommerce.Contract
 
         Task<Actor> GetActorAsync(Expression<Func<Actor, bool>> predicate);
 
-        Task<bool> AddActor(Actor actor);
+        Task<bool> AddActorAsync(Actor actor);
 
-        Task<bool> UpdateActor(Actor actor);
+        Task<bool> UpdateActorAsync(Actor actor);
 
-        Task<bool> DeleteActor(string actorId);
+        Task<bool> DeleteActorAsync(string actorId);
     }
 }

@@ -8,7 +8,8 @@ namespace MovieECommerce.Models
     {
 
         [Key]
-        public string MovieId { get; private set; } = Guid.NewGuid().ToString().Substring(0, 10).Replace("-", "$");
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string? MovieId { get; private set; }
         public string? Name { get; set; }
         public string? ImageURL { get; set; }
         public double Price { get; set; }
